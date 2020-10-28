@@ -85,6 +85,16 @@
     executable: "/bin/bash"
   when: get_url_result is changed
 
+- name: copy templates
+  template:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src | default('./templates' + item.dest + '.j2') }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0644') }}"
+  loop:
+    - { dest: "/etc/bash_completion.d/packer" }
+
 - name: prepare files
   file:
     dest: "{{ item.dest }}"
@@ -93,4 +103,5 @@
     mode: "{{ item.mode | default('0644') }}"
     state: "{{ item.state | default('file') }}"
   loop:
+    - { dest: "/etc/bash_completion.d/packer" }
     - { dest: "/usr/local/bin/packer", mode: "0755" }
