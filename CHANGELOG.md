@@ -4,6 +4,7 @@
 
 ### Major Changes
 
+  - Support Ubuntu 20.10
 ## 4.5.0 - 2020-10-21
 
   - Ininitial release for Ansible 2.10 or higher
