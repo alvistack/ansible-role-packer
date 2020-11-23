@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # Packer version.
-packer_version: "1.6.5"
+packer_version: "nightly"
 
 # Packer download details.
 packer_download: "{{ _packer_download[packer_version] }}"
