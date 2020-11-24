@@ -18,7 +18,7 @@ _packer_download:
   "nightly":
     url: "https://github.com/hashicorp/packer/releases/download/nightly/packer_linux_amd64.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/packer_linux_amd64.zip"
-    checksum: "sha1:08bfaa414f970ebd8c0d19775345e2fc3bc77121"
+    checksum: "sha1:44828a07f73f109f0dd1c4966f9d95db17b8c623"
   "1.6.5":
     url: "https://releases.hashicorp.com/packer/1.6.5/packer_1.6.5_linux_amd64.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/packer_1.6.5_linux_amd64.zip"

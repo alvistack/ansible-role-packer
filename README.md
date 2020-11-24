@@ -1,6 +1,6 @@
 # Ansible Role for Packer
 
-[![Travis](https://img.shields.io/travis/com/alvistack/ansible-role-packer.svg)](https://travis-ci.com/alvistack/ansible-role-packer)
+[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-packer/master)](https://gitlab.com/alvistack/ansible-role-packer/-/pipelines)
 [![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-packer.svg)](https://github.com/alvistack/ansible-role-packer/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-packer.svg)](https://github.com/alvistack/ansible-role-packer/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.packer-blue.svg)](https://galaxy.ansible.com/alvistack/packer)
