@@ -15,6 +15,14 @@
 # limitations under the License.
 
 _packer_download:
+  "nightly":
+    url: "https://github.com/hashicorp/packer/releases/download/nightly/packer_linux_amd64.zip"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/packer_linux_amd64.zip"
+    checksum: "sha1:44828a07f73f109f0dd1c4966f9d95db17b8c623"
+  "1.6.5":
+    url: "https://releases.hashicorp.com/packer/1.6.5/packer_1.6.5_linux_amd64.zip"
+    dest: "{{ ansible_user_dir }}/.ansible/tmp/packer_1.6.5_linux_amd64.zip"
+    checksum: "sha1:59f9066fb9bd6054644451b415e5a6cd31cac20c"
   "1.6.4":
     url: "https://releases.hashicorp.com/packer/1.6.4/packer_1.6.4_linux_amd64.zip"
     dest: "{{ ansible_user_dir }}/.ansible/tmp/packer_1.6.4_linux_amd64.zip"

@@ -16,4 +16,4 @@
 
 _apt:
   - { state: "latest", name: "bash-completion" }
-  - { state: "latest", name: "bzip2" }
+  - { state: "latest", name: "unzip" }
