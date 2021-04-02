@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _packer_download:
+  "1.7.1":
+    url: "https://releases.hashicorp.com/packer/1.7.1/packer_1.7.1_linux_amd64.zip"
+    dest: "/var/cache/ansible/1afd50d8cd30290d569e07548fecfb4fe8c95994740acbc3a5b2c2246268a026/packer_1.7.1_linux_amd64.zip"
+    sha256sum: "1afd50d8cd30290d569e07548fecfb4fe8c95994740acbc3a5b2c2246268a026"
   "1.7.0":
     url: "https://releases.hashicorp.com/packer/1.7.0/packer_1.7.0_linux_amd64.zip"
     dest: "/var/cache/ansible/935e81c07381a964bdbaddde2d890c91d52e88b9e5375f3882840925f6a96893/packer_1.7.0_linux_amd64.zip"
