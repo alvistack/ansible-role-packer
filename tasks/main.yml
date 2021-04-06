@@ -54,7 +54,6 @@
     state: "{{ item.state | default('directory') }}"
   loop:
     - { dest: "/etc/bash_completion.d" }
-    - { dest: "/root/.packer.d/plugins" }
     - { dest: "/usr/local/bin" }
 
 - name: download archive
@@ -96,7 +95,7 @@
   shell: |
     set -euo pipefail
     exec &> >(tee -a {{ packer_download.dest }}.log)
-    cd /root/.packer.d/plugins
+    cd /usr/local/bin
     TMP_DIR="$(mktemp -d)" \
       && unzip -qq -d $TMP_DIR {{ packer_plugin_docker_download.dest }} \
       && chown root:root $TMP_DIR/packer-plugin-docker* \
