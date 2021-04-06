@@ -94,13 +94,13 @@
 - name: unarchive package
   shell: |
     set -euo pipefail
-    exec &> >(tee -a {{ packer_download.dest }}.log)
+    exec &> >(tee -a {{ packer_plugin_docker_download.dest }}.log)
     cd /usr/local/bin
     TMP_DIR="$(mktemp -d)" \
       && unzip -qq -d $TMP_DIR {{ packer_plugin_docker_download.dest }} \
-      && chown root:root $TMP_DIR/packer-plugin-docker* \
-      && chmod 0755 $TMP_DIR/packer-plugin-docker* \
-      && mv $TMP_DIR/packer-plugin-docker* ./packer-plugin-docker \
+      && chown root:root $TMP_DIR/packer-plugin-docker \
+      && chmod 0755 $TMP_DIR/packer-plugin-docker \
+      && mv $TMP_DIR/packer-plugin-docker . \
       && rm -rf $TMP_DIR
   args:
     executable: "/bin/bash"
