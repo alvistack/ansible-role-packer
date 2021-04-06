@@ -19,3 +19,9 @@ packer_version: "1.7.1"
 
 # Packer download details.
 packer_download: "{{ _packer_download[packer_version] }}"
+
+# Packer Plugin Docker version.
+packer_plugin_docker_version: "v0.0.7"
+
+# Packer Plugin Docker download details.
+packer_plugin_docker_download: "{{ _packer_plugin_docker_download[packer_plugin_docker_version] }}"

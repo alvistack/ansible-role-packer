@@ -35,3 +35,9 @@ _packer_download:
     url: "https://releases.hashicorp.com/packer/1.6.4/packer_1.6.4_linux_amd64.zip"
     dest: "/var/cache/ansible/a20ec68e9eb6e1d6016481003f705babbecc28e234f8434f3a35f675cb200ea8/packer_1.6.4_linux_amd64.zip"
     sha256sum: "a20ec68e9eb6e1d6016481003f705babbecc28e234f8434f3a35f675cb200ea8"
+
+_packer_plugin_docker_download:
+  "v0.0.7":
+    url: "https://github.com/hashicorp/packer-plugin-docker/releases/download/v0.0.7/packer-plugin-docker_v0.0.7_x5.0_linux_amd64.zip"
+    dest: "/var/cache/ansible/807559f0ff00b31bbb83d16d1d639365f5648fd3ca04d2dbfd4810ca86ddfd94/packer-plugin-docker_v0.0.7_x5.0_linux_amd64.zip"
+    sha256sum: "807559f0ff00b31bbb83d16d1d639365f5648fd3ca04d2dbfd4810ca86ddfd94"
