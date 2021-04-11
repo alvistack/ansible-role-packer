@@ -4,7 +4,10 @@
 
 ### Major Changes
 
+  - Support Ubuntu 21.04
+
   - Install [Packer Plugin Docker](https://github.com/hashicorp/packer-plugin-docker)
+
   - Simplify download archive logic
 
 ## 4.7.0 - 2021-03-13
