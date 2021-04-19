@@ -72,6 +72,7 @@
     creates: "{{ item.dest | dirname }}"
   loop:
     - "{{ packer_download }}"
+    - "{{ packer_plugin_docker_download }}"
   register: result
   until: result is succeeded
 
@@ -89,6 +90,21 @@
   args:
     executable: "/bin/bash"
     creates: "{{ packer_download.dest }}.log"
+
+- name: unarchive package
+  shell: |
+    set -euo pipefail
+    exec &> >(tee -a {{ packer_plugin_docker_download.dest }}.log)
+    cd /usr/local/bin
+    TMP_DIR="$(mktemp -d)" \
+      && unzip -qq -d $TMP_DIR {{ packer_plugin_docker_download.dest }} \
+      && chown root:root $TMP_DIR/packer-plugin-docker \
+      && chmod 0755 $TMP_DIR/packer-plugin-docker \
+      && mv $TMP_DIR/packer-plugin-docker . \
+      && rm -rf $TMP_DIR
+  args:
+    executable: "/bin/bash"
+    creates: "{{ packer_plugin_docker_download.dest }}.log"
 
 - name: copy templates
   template:

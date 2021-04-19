@@ -15,6 +15,10 @@
 # limitations under the License.
 
 _packer_download:
+  "1.7.2":
+    url: "https://releases.hashicorp.com/packer/1.7.2/packer_1.7.2_linux_amd64.zip"
+    dest: "/var/cache/ansible/9429c3a6f80b406dbddb9b30a4e468aeac59ab6ae4d09618c8d70c4f4188442e/packer_1.7.2_linux_amd64.zip"
+    sha256sum: "9429c3a6f80b406dbddb9b30a4e468aeac59ab6ae4d09618c8d70c4f4188442e"
   "1.7.1":
     url: "https://releases.hashicorp.com/packer/1.7.1/packer_1.7.1_linux_amd64.zip"
     dest: "/var/cache/ansible/1afd50d8cd30290d569e07548fecfb4fe8c95994740acbc3a5b2c2246268a026/packer_1.7.1_linux_amd64.zip"
@@ -35,3 +39,9 @@ _packer_download:
     url: "https://releases.hashicorp.com/packer/1.6.4/packer_1.6.4_linux_amd64.zip"
     dest: "/var/cache/ansible/a20ec68e9eb6e1d6016481003f705babbecc28e234f8434f3a35f675cb200ea8/packer_1.6.4_linux_amd64.zip"
     sha256sum: "a20ec68e9eb6e1d6016481003f705babbecc28e234f8434f3a35f675cb200ea8"
+
+_packer_plugin_docker_download:
+  "v0.0.7":
+    url: "https://github.com/alvistack/packer-plugin-docker/releases/download/v0.0.7/packer-plugin-docker_v0.0.7_x5.0_linux_amd64.zip"
+    dest: "/var/cache/ansible/447931be372d6d90e5c4de501a4e91ad6ac3b92caed2b8c4b07ed083565f3b61/packer-plugin-docker_v0.0.7_x5.0_linux_amd64.zip"
+    sha256sum: "447931be372d6d90e5c4de501a4e91ad6ac3b92caed2b8c4b07ed083565f3b61"
