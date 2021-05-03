@@ -72,7 +72,10 @@
     creates: "{{ item.dest | dirname }}"
   loop:
     - "{{ packer_download }}"
+    - "{{ packer_plugin_vagrant_download }}"
     - "{{ packer_plugin_docker_download }}"
+    - "{{ packer_plugin_qemu_download }}"
+    - "{{ packer_plugin_virtualbox_download }}"
   register: result
   until: result is succeeded
 
@@ -94,10 +97,27 @@
 - name: unarchive package
   shell: |
     set -euo pipefail
+    exec &> >(tee -a {{ packer_plugin_vagrant_download.dest }}.log)
+    cd /usr/local/bin
+    TMP_DIR="$(mktemp -d)" \
+      && unzip -qq -d $TMP_DIR {{ packer_plugin_vagrant_download.dest }} \
+      && mv $TMP_DIR/packer-plugin-vagrant* $TMP_DIR/packer-plugin-vagrant \
+      && chown root:root $TMP_DIR/packer-plugin-vagrant \
+      && chmod 0755 $TMP_DIR/packer-plugin-vagrant \
+      && mv $TMP_DIR/packer-plugin-vagrant . \
+      && rm -rf $TMP_DIR
+  args:
+    executable: "/bin/bash"
+    creates: "{{ packer_plugin_vagrant_download.dest }}.log"
+
+- name: unarchive package
+  shell: |
+    set -euo pipefail
     exec &> >(tee -a {{ packer_plugin_docker_download.dest }}.log)
     cd /usr/local/bin
     TMP_DIR="$(mktemp -d)" \
       && unzip -qq -d $TMP_DIR {{ packer_plugin_docker_download.dest }} \
+      && mv $TMP_DIR/packer-plugin-docker* $TMP_DIR/packer-plugin-docker \
       && chown root:root $TMP_DIR/packer-plugin-docker \
       && chmod 0755 $TMP_DIR/packer-plugin-docker \
       && mv $TMP_DIR/packer-plugin-docker . \
@@ -105,6 +125,38 @@
   args:
     executable: "/bin/bash"
     creates: "{{ packer_plugin_docker_download.dest }}.log"
+
+- name: unarchive package
+  shell: |
+    set -euo pipefail
+    exec &> >(tee -a {{ packer_plugin_qemu_download.dest }}.log)
+    cd /usr/local/bin
+    TMP_DIR="$(mktemp -d)" \
+      && unzip -qq -d $TMP_DIR {{ packer_plugin_qemu_download.dest }} \
+      && mv $TMP_DIR/packer-plugin-qemu* $TMP_DIR/packer-plugin-qemu \
+      && chown root:root $TMP_DIR/packer-plugin-qemu \
+      && chmod 0755 $TMP_DIR/packer-plugin-qemu \
+      && mv $TMP_DIR/packer-plugin-qemu . \
+      && rm -rf $TMP_DIR
+  args:
+    executable: "/bin/bash"
+    creates: "{{ packer_plugin_qemu_download.dest }}.log"
+
+- name: unarchive package
+  shell: |
+    set -euo pipefail
+    exec &> >(tee -a {{ packer_plugin_virtualbox_download.dest }}.log)
+    cd /usr/local/bin
+    TMP_DIR="$(mktemp -d)" \
+      && unzip -qq -d $TMP_DIR {{ packer_plugin_virtualbox_download.dest }} \
+      && mv $TMP_DIR/packer-plugin-virtualbox* $TMP_DIR/packer-plugin-virtualbox \
+      && chown root:root $TMP_DIR/packer-plugin-virtualbox \
+      && chmod 0755 $TMP_DIR/packer-plugin-virtualbox \
+      && mv $TMP_DIR/packer-plugin-virtualbox . \
+      && rm -rf $TMP_DIR
+  args:
+    executable: "/bin/bash"
+    creates: "{{ packer_plugin_virtualbox_download.dest }}.log"
 
 - name: copy templates
   template:

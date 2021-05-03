@@ -40,8 +40,26 @@ _packer_download:
     dest: "/var/cache/ansible/a20ec68e9eb6e1d6016481003f705babbecc28e234f8434f3a35f675cb200ea8/packer_1.6.4_linux_amd64.zip"
     sha256sum: "a20ec68e9eb6e1d6016481003f705babbecc28e234f8434f3a35f675cb200ea8"
 
+_packer_plugin_vagrant_download:
+  "v0.0.3":
+    url: "https://github.com/hashicorp/packer-plugin-vagrant/releases/download/v0.0.3/packer-plugin-vagrant_v0.0.3_x5.0_linux_amd64.zip"
+    dest: "/var/cache/ansible/d8da3e9bec9b13662211406b4f4e8165c2f40771844dc8d4c9e1c3ce7805d95a/packer-plugin-vagrant_v0.0.3_x5.0_linux_amd64.zip"
+    sha256sum: "d8da3e9bec9b13662211406b4f4e8165c2f40771844dc8d4c9e1c3ce7805d95a"
+
 _packer_plugin_docker_download:
   "v0.0.7":
-    url: "https://github.com/alvistack/packer-plugin-docker/releases/download/v0.0.7/packer-plugin-docker_v0.0.7_x5.0_linux_amd64.zip"
-    dest: "/var/cache/ansible/447931be372d6d90e5c4de501a4e91ad6ac3b92caed2b8c4b07ed083565f3b61/packer-plugin-docker_v0.0.7_x5.0_linux_amd64.zip"
-    sha256sum: "447931be372d6d90e5c4de501a4e91ad6ac3b92caed2b8c4b07ed083565f3b61"
+    url: "https://github.com/hashicorp/packer-plugin-docker/releases/download/v0.0.7/packer-plugin-docker_v0.0.7_x5.0_linux_amd64.zip"
+    dest: "/var/cache/ansible/807559f0ff00b31bbb83d16d1d639365f5648fd3ca04d2dbfd4810ca86ddfd94/packer-plugin-docker_v0.0.7_x5.0_linux_amd64.zip"
+    sha256sum: "807559f0ff00b31bbb83d16d1d639365f5648fd3ca04d2dbfd4810ca86ddfd94"
+
+_packer_plugin_qemu_download:
+  "v0.0.1":
+    url: "https://github.com/hashicorp/packer-plugin-qemu/releases/download/v0.0.1/packer-plugin-qemu_v0.0.1_x5.0_linux_amd64.zip"
+    dest: "/var/cache/ansible/a50148efd45c38357fb6a72c1d00c355f00192e50b1dda1e4111e5de1e63d528/packer-plugin-qemu_v0.0.1_x5.0_linux_amd64.zip"
+    sha256sum: "a50148efd45c38357fb6a72c1d00c355f00192e50b1dda1e4111e5de1e63d528"
+
+_packer_plugin_virtualbox_download:
+  "v0.0.1":
+    url: "https://github.com/hashicorp/packer-plugin-virtualbox/releases/download/v0.0.1/packer-plugin-virtualbox_v0.0.1_x5.0_linux_amd64.zip"
+    dest: "/var/cache/ansible/8349c2496f621caed805072e79bb4fbc184d204b59a33c0512c01cebec860e8d/packer-plugin-virtualbox_v0.0.1_x5.0_linux_amd64.zip"
+    sha256sum: "8349c2496f621caed805072e79bb4fbc184d204b59a33c0512c01cebec860e8d"
