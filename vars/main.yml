@@ -63,3 +63,9 @@ _packer_plugin_virtualbox_download:
     url: "https://github.com/hashicorp/packer-plugin-virtualbox/releases/download/v0.0.1/packer-plugin-virtualbox_v0.0.1_x5.0_linux_amd64.zip"
     dest: "/var/cache/ansible/8349c2496f621caed805072e79bb4fbc184d204b59a33c0512c01cebec860e8d/packer-plugin-virtualbox_v0.0.1_x5.0_linux_amd64.zip"
     sha256sum: "8349c2496f621caed805072e79bb4fbc184d204b59a33c0512c01cebec860e8d"
+
+_packer_plugin_ansible_download:
+  "v0.0.3":
+    url: "https://github.com/hashicorp/packer-plugin-ansible/releases/download/v0.0.3/packer-plugin-ansible_v0.0.3_x5.0_linux_amd64.zip"
+    dest: "/var/cache/ansible/7c25d90a21bdd5a4e8fd49feaab93856f5883ac1b4b433a09122c3739a47560c/packer-plugin-ansible_v0.0.3_x5.0_linux_amd64.zip"
+    sha256sum: "7c25d90a21bdd5a4e8fd49feaab93856f5883ac1b4b433a09122c3739a47560c"

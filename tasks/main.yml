@@ -18,7 +18,10 @@
   include_vars: "../vars/main.yml"
 
 - name: include release specific variables
-  include_vars: "{{ lookup('first_found', _params) }}"
+  include_vars: "{{ _loop_var }}"
+  loop: "{{ query('first_found', _params) }}"
+  loop_control:
+    loop_var: _loop_var
   vars:
     _params:
       files:
@@ -29,9 +32,13 @@
         - "{{ ansible_os_family | lower }}.yml"
       paths:
         - "../vars"
+      skip: true
 
 - name: include release specific tasks
-  include_tasks: "{{ lookup('first_found', _params) }}"
+  include_tasks: "{{ _loop_var }}"
+  loop: "{{ query('first_found', _params) }}"
+  loop_control:
+    loop_var: _loop_var
   vars:
     _params:
       files:
@@ -42,6 +49,7 @@
         - "{{ ansible_os_family | lower }}.yml"
       paths:
         - "."
+      skip: true
 
 - name: prepare directories
   file:
@@ -70,12 +78,23 @@
     creates: "{{ item.dest | dirname }}"
   loop:
     - "{{ packer_download }}"
-    - "{{ packer_plugin_vagrant_download }}"
+    - "{{ packer_plugin_ansible_download }}"
     - "{{ packer_plugin_docker_download }}"
     - "{{ packer_plugin_qemu_download }}"
+    - "{{ packer_plugin_vagrant_download }}"
     - "{{ packer_plugin_virtualbox_download }}"
   register: result
   until: result is succeeded
+
+- name: copy templates
+  template:
+    dest: "{{ item.dest }}"
+    src: "{{ item.src | default('./templates' + item.dest + '.j2') }}"
+    owner: "{{ item.owner | default('root') }}"
+    group: "{{ item.group | default('root') }}"
+    mode: "{{ item.mode | default('0644') }}"
+  loop:
+    - { dest: "/etc/bash_completion.d/packer" }
 
 - name: unarchive package
   shell: |
@@ -95,76 +114,24 @@
 - name: unarchive package
   shell: |
     set -euo pipefail
-    exec &> >(tee -a {{ packer_plugin_vagrant_download.dest }}.log)
+    exec &> >(tee -a {{ item.src }}.log)
     cd /usr/local/bin
     TMP_DIR="$(mktemp -d)" \
-      && unzip -qq -d $TMP_DIR {{ packer_plugin_vagrant_download.dest }} \
-      && mv $TMP_DIR/packer-plugin-vagrant* $TMP_DIR/packer-plugin-vagrant \
-      && chown root:root $TMP_DIR/packer-plugin-vagrant \
-      && chmod 0755 $TMP_DIR/packer-plugin-vagrant \
-      && mv $TMP_DIR/packer-plugin-vagrant . \
+      && unzip -qq -d $TMP_DIR {{ item.src }} \
+      && mv $TMP_DIR/{{ item.dest }}* $TMP_DIR/{{ item.dest }} \
+      && chown root:root $TMP_DIR/{{ item.dest }} \
+      && chmod 0755 $TMP_DIR/{{ item.dest }} \
+      && mv $TMP_DIR/{{ item.dest }} . \
       && rm -rf $TMP_DIR
   args:
     executable: "/bin/bash"
-    creates: "{{ packer_plugin_vagrant_download.dest }}.log"
-
-- name: unarchive package
-  shell: |
-    set -euo pipefail
-    exec &> >(tee -a {{ packer_plugin_docker_download.dest }}.log)
-    cd /usr/local/bin
-    TMP_DIR="$(mktemp -d)" \
-      && unzip -qq -d $TMP_DIR {{ packer_plugin_docker_download.dest }} \
-      && mv $TMP_DIR/packer-plugin-docker* $TMP_DIR/packer-plugin-docker \
-      && chown root:root $TMP_DIR/packer-plugin-docker \
-      && chmod 0755 $TMP_DIR/packer-plugin-docker \
-      && mv $TMP_DIR/packer-plugin-docker . \
-      && rm -rf $TMP_DIR
-  args:
-    executable: "/bin/bash"
-    creates: "{{ packer_plugin_docker_download.dest }}.log"
-
-- name: unarchive package
-  shell: |
-    set -euo pipefail
-    exec &> >(tee -a {{ packer_plugin_qemu_download.dest }}.log)
-    cd /usr/local/bin
-    TMP_DIR="$(mktemp -d)" \
-      && unzip -qq -d $TMP_DIR {{ packer_plugin_qemu_download.dest }} \
-      && mv $TMP_DIR/packer-plugin-qemu* $TMP_DIR/packer-plugin-qemu \
-      && chown root:root $TMP_DIR/packer-plugin-qemu \
-      && chmod 0755 $TMP_DIR/packer-plugin-qemu \
-      && mv $TMP_DIR/packer-plugin-qemu . \
-      && rm -rf $TMP_DIR
-  args:
-    executable: "/bin/bash"
-    creates: "{{ packer_plugin_qemu_download.dest }}.log"
-
-- name: unarchive package
-  shell: |
-    set -euo pipefail
-    exec &> >(tee -a {{ packer_plugin_virtualbox_download.dest }}.log)
-    cd /usr/local/bin
-    TMP_DIR="$(mktemp -d)" \
-      && unzip -qq -d $TMP_DIR {{ packer_plugin_virtualbox_download.dest }} \
-      && mv $TMP_DIR/packer-plugin-virtualbox* $TMP_DIR/packer-plugin-virtualbox \
-      && chown root:root $TMP_DIR/packer-plugin-virtualbox \
-      && chmod 0755 $TMP_DIR/packer-plugin-virtualbox \
-      && mv $TMP_DIR/packer-plugin-virtualbox . \
-      && rm -rf $TMP_DIR
-  args:
-    executable: "/bin/bash"
-    creates: "{{ packer_plugin_virtualbox_download.dest }}.log"
-
-- name: copy templates
-  template:
-    dest: "{{ item.dest }}"
-    src: "{{ item.src | default('./templates' + item.dest + '.j2') }}"
-    owner: "{{ item.owner | default('root') }}"
-    group: "{{ item.group | default('root') }}"
-    mode: "{{ item.mode | default('0644') }}"
+    creates: "{{ item.src }}.log"
   loop:
-    - { dest: "/etc/bash_completion.d/packer" }
+    - { src: "{{ packer_plugin_ansible_download.dest }}", dest: "packer-plugin-ansible" }
+    - { src: "{{ packer_plugin_docker_download.dest }}", dest: "packer-plugin-docker" }
+    - { src: "{{ packer_plugin_qemu_download.dest }}", dest: "packer-plugin-qemu" }
+    - { src: "{{ packer_plugin_vagrant_download.dest }}", dest: "packer-plugin-vagrant" }
+    - { src: "{{ packer_plugin_virtualbox_download.dest }}", dest: "packer-plugin-virtualbox" }
 
 - name: prepare files
   file:
@@ -176,3 +143,8 @@
   loop:
     - { dest: "/etc/bash_completion.d/packer" }
     - { dest: "/usr/local/bin/packer", mode: "0755" }
+    - { dest: "/usr/local/bin/packer-plugin-ansible", mode: "0755" }
+    - { dest: "/usr/local/bin/packer-plugin-docker", mode: "0755" }
+    - { dest: "/usr/local/bin/packer-plugin-qemu", mode: "0755" }
+    - { dest: "/usr/local/bin/packer-plugin-vagrant", mode: "0755" }
+    - { dest: "/usr/local/bin/packer-plugin-virtualbox", mode: "0755" }
