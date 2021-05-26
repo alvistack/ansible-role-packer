@@ -14,5 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+_apt_key:
+  - url: "https://apt.releases.hashicorp.com/gpg"
+    id: "E8A032E094D8EB4EA189D270DA418C88A3219F7B"
+    state: "present"
+
+_apt_repository:
+  - repo: "deb [arch=amd64] https://apt.releases.hashicorp.com hirsute main"
+    state: "present"
+
 _apt:
   - { state: "latest", name: "bash-completion" }
+  - { state: "latest", name: "packer" }

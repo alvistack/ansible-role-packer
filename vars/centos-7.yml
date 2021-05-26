@@ -14,5 +14,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+_rpm_key:
+  - key: "https://rpm.releases.hashicorp.com/gpg"
+    fingerprint: "E8A032E094D8EB4EA189D270DA418C88A3219F7B"
+    state: "present"
+
+_yum_repository:
+  - file: "hashicorp"
+    name: "hashicorp"
+    description: "Hashicorp Stable - x86_64"
+    baseurl: "https://rpm.releases.hashicorp.com/RHEL/7/x86_64/stable"
+    enabled: true
+    priority: "2"
+    gpgcheck: true
+    gpgkey: "https://rpm.releases.hashicorp.com/gpg"
+    state: "present"
+
 _yum:
   - { state: "latest", name: "bash-completion" }
+  - { state: "latest", name: "packer" }

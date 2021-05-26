@@ -60,31 +60,6 @@
     state: "{{ item.state | default('directory') }}"
   loop:
     - { dest: "/etc/bash_completion.d" }
-    - { dest: "/usr/local/bin" }
-
-- name: download archive
-  shell: |
-    set -euo pipefail
-    TMP_DIR="$(mktemp -d)" \
-      && cd $TMP_DIR \
-      && mkdir -p ./{{ item.dest | dirname }} \
-      && curl -skL -m 300 {{ item.url }} > ./{{ item.dest }} \
-      && echo -n "{{ item.sha256sum }} ./{{ item.dest }}" | sha256sum -c - \
-      && mkdir -p {{ item.dest | dirname }} \
-      && mv ./{{ item.dest }} {{ item.dest }} \
-      && rm -rf $TMP_DIR
-  args:
-    executable: "/bin/bash"
-    creates: "{{ item.dest | dirname }}"
-  loop:
-    - "{{ packer_download }}"
-    - "{{ packer_plugin_ansible_download }}"
-    - "{{ packer_plugin_docker_download }}"
-    - "{{ packer_plugin_qemu_download }}"
-    - "{{ packer_plugin_vagrant_download }}"
-    - "{{ packer_plugin_virtualbox_download }}"
-  register: result
-  until: result is succeeded
 
 - name: copy templates
   template:
@@ -96,43 +71,6 @@
   loop:
     - { dest: "/etc/bash_completion.d/packer" }
 
-- name: unarchive package
-  shell: |
-    set -euo pipefail
-    exec &> >(tee -a {{ packer_download.dest }}.log)
-    cd /usr/local/bin
-    TMP_DIR="$(mktemp -d)" \
-      && unzip -qq -d $TMP_DIR {{ packer_download.dest }} \
-      && chown root:root $TMP_DIR/packer \
-      && chmod 0755 $TMP_DIR/packer \
-      && mv $TMP_DIR/packer . \
-      && rm -rf $TMP_DIR
-  args:
-    executable: "/bin/bash"
-    creates: "{{ packer_download.dest }}.log"
-
-- name: unarchive package
-  shell: |
-    set -euo pipefail
-    exec &> >(tee -a {{ item.src }}.log)
-    cd /usr/local/bin
-    TMP_DIR="$(mktemp -d)" \
-      && unzip -qq -d $TMP_DIR {{ item.src }} \
-      && mv $TMP_DIR/{{ item.dest }}* $TMP_DIR/{{ item.dest }} \
-      && chown root:root $TMP_DIR/{{ item.dest }} \
-      && chmod 0755 $TMP_DIR/{{ item.dest }} \
-      && mv $TMP_DIR/{{ item.dest }} . \
-      && rm -rf $TMP_DIR
-  args:
-    executable: "/bin/bash"
-    creates: "{{ item.src }}.log"
-  loop:
-    - { src: "{{ packer_plugin_ansible_download.dest }}", dest: "packer-plugin-ansible" }
-    - { src: "{{ packer_plugin_docker_download.dest }}", dest: "packer-plugin-docker" }
-    - { src: "{{ packer_plugin_qemu_download.dest }}", dest: "packer-plugin-qemu" }
-    - { src: "{{ packer_plugin_vagrant_download.dest }}", dest: "packer-plugin-vagrant" }
-    - { src: "{{ packer_plugin_virtualbox_download.dest }}", dest: "packer-plugin-virtualbox" }
-
 - name: prepare files
   file:
     dest: "{{ item.dest }}"
@@ -142,9 +80,3 @@
     state: "{{ item.state | default('file') }}"
   loop:
     - { dest: "/etc/bash_completion.d/packer" }
-    - { dest: "/usr/local/bin/packer", mode: "0755" }
-    - { dest: "/usr/local/bin/packer-plugin-ansible", mode: "0755" }
-    - { dest: "/usr/local/bin/packer-plugin-docker", mode: "0755" }
-    - { dest: "/usr/local/bin/packer-plugin-qemu", mode: "0755" }
-    - { dest: "/usr/local/bin/packer-plugin-vagrant", mode: "0755" }
-    - { dest: "/usr/local/bin/packer-plugin-virtualbox", mode: "0755" }
