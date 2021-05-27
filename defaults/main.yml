@@ -13,39 +13,3 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
-# Packer version.
-packer_version: "1.7.2"
-
-# Packer download details.
-packer_download: "{{ _packer_download[packer_version] }}"
-
-# Packer Plugin for Vagrant version.
-packer_plugin_vagrant_version: "v0.0.3"
-
-# Packer Plugin for Vagrant download details.
-packer_plugin_vagrant_download: "{{ _packer_plugin_vagrant_download[packer_plugin_vagrant_version] }}"
-
-# Packer Plugin for Docker version.
-packer_plugin_docker_version: "v0.0.7"
-
-# Packer Plugin for Docker download details.
-packer_plugin_docker_download: "{{ _packer_plugin_docker_download[packer_plugin_docker_version] }}"
-
-# Packer Plugin for QEMU Builder version.
-packer_plugin_qemu_version: "v0.0.1"
-
-# Packer Plugin for QEMU Builder download details.
-packer_plugin_qemu_download: "{{ _packer_plugin_qemu_download[packer_plugin_qemu_version] }}"
-
-# Packer Plugin for VirtualBox Builder version.
-packer_plugin_virtualbox_version: "v0.0.1"
-
-# Packer Plugin for VirtualBox Builder download details.
-packer_plugin_virtualbox_download: "{{ _packer_plugin_virtualbox_download[packer_plugin_virtualbox_version] }}"
-
-# Packer Plugin for Ansible Provisioner version.
-packer_plugin_ansible_version: "v0.0.3"
-
-# Packer Plugin for Ansible Provisioner download details.
-packer_plugin_ansible_download: "{{ _packer_plugin_ansible_download[packer_plugin_ansible_version] }}"
