@@ -4,6 +4,8 @@
 
 ### Major Changes
 
+  - Install with official repo
+  - Upgrade minimal Ansible support to 4.0.0
   - Support Fedora 34
   - Support Ubuntu 21.04
   - Install [Packer Plugin Docker](https://github.com/hashicorp/packer-plugin-docker)
