@@ -20,7 +20,7 @@ _apt_key:
     state: "present"
 
 _apt_repository:
-  - repo: "deb [arch=amd64] https://apt.releases.hashicorp.com bullseye main"
+  - repo: "deb [arch=amd64] https://apt.releases.hashicorp.com buster main"
     state: "present"
 
 _apt:
