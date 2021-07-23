@@ -1,13 +1,9 @@
 # Ansible Role for Packer
 
-[![Gitlab pipeline
-status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-packer/master)](https://gitlab.com/alvistack/ansible-role-packer/-/pipelines)
-[![GitHub
-release](https://img.shields.io/github/release/alvistack/ansible-role-packer.svg)](https://github.com/alvistack/ansible-role-packer/releases)
-[![GitHub
-license](https://img.shields.io/github/license/alvistack/ansible-role-packer.svg)](https://github.com/alvistack/ansible-role-packer/blob/master/LICENSE)
-[![Ansible
-Role](https://img.shields.io/badge/galaxy-alvistack.packer-blue.svg)](https://galaxy.ansible.com/alvistack/packer)
+[![Gitlab pipeline status](https://img.shields.io/gitlab/pipeline/alvistack/ansible-role-packer/master)](https://gitlab.com/alvistack/ansible-role-packer/-/pipelines)
+[![GitHub release](https://img.shields.io/github/release/alvistack/ansible-role-packer.svg)](https://github.com/alvistack/ansible-role-packer/releases)
+[![GitHub license](https://img.shields.io/github/license/alvistack/ansible-role-packer.svg)](https://github.com/alvistack/ansible-role-packer/blob/master/LICENSE)
+[![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.packer-blue.svg)](https://galaxy.ansible.com/alvistack/packer)
 
 Ansible Role for Packer Installation.
 
@@ -43,8 +39,7 @@ This role could simply deploy to `localhost` as below:
 ## License
 
   - Code released under [Apache License 2.0](LICENSE)
-  - Docs released under [CC BY
-    4.0](http://creativecommons.org/licenses/by/4.0/)
+  - Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 ## Author Information
 
