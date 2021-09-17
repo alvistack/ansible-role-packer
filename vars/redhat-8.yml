@@ -26,6 +26,7 @@ _yum_repository:
     baseurl: "https://rpm.releases.hashicorp.com/RHEL/8/x86_64/stable"
     enabled: true
     priority: "2"
+    module_hotfixes: true
     gpgcheck: true
     gpgkey: "https://rpm.releases.hashicorp.com/gpg"
     state: "present"
