@@ -32,5 +32,4 @@ _yum_repository:
     state: "present"
 
 _zypper:
-  - { state: "latest", name: "bash-completion" }
   - { state: "latest", name: "packer" }
