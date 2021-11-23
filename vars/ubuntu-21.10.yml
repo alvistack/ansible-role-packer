@@ -22,7 +22,7 @@ _apt_key:
 
 _apt_repository:
   - filename: "hashicorp"
-    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com hirsute main"
+    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com impish main"
     state: "present"
 
 _apt:
