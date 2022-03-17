@@ -21,6 +21,6 @@
     - name: /usr/bin/packer --version
       environment:
         PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-      command: /usr/bin/packer --version
+      ansible.builtin.command: /usr/bin/packer --version
       register: result
       changed_when: result is not succeeded
