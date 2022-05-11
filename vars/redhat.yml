@@ -23,7 +23,7 @@ _yum_repository:
   - file: "hashicorp"
     name: "hashicorp"
     description: "Hashicorp Stable - x86_64"
-    baseurl: "https://rpm.releases.hashicorp.com/fedora/35/x86_64/stable"
+    baseurl: "https://rpm.releases.hashicorp.com/fedora/36/x86_64/stable"
     enabled: true
     priority: "2"
     module_hotfixes: true
