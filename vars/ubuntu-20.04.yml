@@ -26,4 +26,4 @@ _apt_repository:
     state: "present"
 
 _apt:
-  - { state: "latest", name: "packer" }
+  - { state: "latest", name: "packer", default_release="o=Artifactory" }
