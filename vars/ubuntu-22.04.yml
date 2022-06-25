@@ -27,4 +27,4 @@ _apt_repository:
 
 _apt:
   - { state: "present", deb: "http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1l-1ubuntu1.5_amd64.deb" }
-  - { state: "latest", name: "packer", default_release: "o=Artifactory" }
+  - { state: "latest", name: "packer" }
