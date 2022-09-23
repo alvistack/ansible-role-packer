@@ -22,7 +22,7 @@ _apt_key:
 
 _apt_repository:
   - filename: "hashicorp"
-    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com kinetic main"
+    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com jammy main"
     state: "present"
 
 _apt:
