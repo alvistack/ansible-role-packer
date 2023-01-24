@@ -16,7 +16,7 @@
 
 _rpm_key:
   - key: "https://rpm.releases.hashicorp.com/gpg"
-    fingerprint: "E8A032E094D8EB4EA189D270DA418C88A3219F7B"
+    fingerprint: "798AEC654E5C15428C8E42EEAA16FCBCA621E701"
     state: "present"
 
 _yum_repository:
