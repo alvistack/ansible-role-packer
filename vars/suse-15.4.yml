@@ -15,21 +15,22 @@
 # limitations under the License.
 
 _rpm_key:
-  - key: "https://rpm.releases.hashicorp.com/gpg"
-    fingerprint: "798AEC654E5C15428C8E42EEAA16FCBCA621E701"
+  - key: "http://downloadcontent.opensuse.org/repositories/home:/alvistack/openSUSE_Leap_15.4/repodata/repomd.xml.key"
+    fingerprint: "789CFFDE0295B8A1F4E5690C4BECC97550D0B1FD"
     state: "present"
 
 _yum_repository:
-  - file: "hashicorp"
-    name: "hashicorp"
-    description: "Hashicorp Stable - x86_64"
-    baseurl: "https://rpm.releases.hashicorp.com/RHEL/8/x86_64/stable"
+  - file: "home_alvistack"
+    name: "home_alvistack"
+    description: "home:alvistack (openSUSE_Leap_15.4)"
+    baseurl: "http://downloadcontent.opensuse.org/repositories/home:/alvistack/openSUSE_Leap_15.4"
     enabled: true
     priority: "2"
     module_hotfixes: true
     gpgcheck: true
-    gpgkey: "https://rpm.releases.hashicorp.com/gpg"
+    gpgkey: "http://downloadcontent.opensuse.org/repositories/home:/alvistack/openSUSE_Leap_15.4/repodata/repomd.xml.key"
     state: "present"
 
 _zypper:
   - { state: "latest", name: "packer" }
+  - { state: "latest", name: "packer-plugin-libvirt" }
