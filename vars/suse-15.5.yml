@@ -14,16 +14,23 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-_apt_key:
-  - keyring: "/etc/apt/trusted.gpg.d/hashicorp.gpg"
-    url: "https://apt.releases.hashicorp.com/gpg"
-    id: "798AEC654E5C15428C8E42EEAA16FCBCA621E701"
+_rpm_key:
+  - key: "http://downloadcontent.opensuse.org/repositories/home:/alvistack/openSUSE_Leap_15.5/repodata/repomd.xml.key"
+    fingerprint: "789CFFDE0295B8A1F4E5690C4BECC97550D0B1FD"
     state: "present"
 
-_apt_repository:
-  - filename: "hashicorp"
-    repo: "deb [arch=amd64] https://apt.releases.hashicorp.com buster main"
+_yum_repository:
+  - file: "home_alvistack"
+    name: "home_alvistack"
+    description: "home:alvistack (openSUSE_Leap_15.5)"
+    baseurl: "http://downloadcontent.opensuse.org/repositories/home:/alvistack/openSUSE_Leap_15.5"
+    enabled: true
+    priority: "2"
+    module_hotfixes: true
+    gpgcheck: true
+    gpgkey: "http://downloadcontent.opensuse.org/repositories/home:/alvistack/openSUSE_Leap_15.5/repodata/repomd.xml.key"
     state: "present"
 
-_apt:
+_zypper:
   - { state: "latest", name: "packer" }
+  - { state: "latest", name: "packer-plugin-libvirt" }

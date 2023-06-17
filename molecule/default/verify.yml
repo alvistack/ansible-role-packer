@@ -19,10 +19,8 @@
   remote_user: root
   become: true
   tasks:
-    - name: /usr/bin/packer --version
-      environment:
-        PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+    - name: packer --version
       ansible.builtin.command:
-        cmd: /usr/bin/packer --version
+        cmd: packer --version
       register: result
       changed_when: result is not succeeded
