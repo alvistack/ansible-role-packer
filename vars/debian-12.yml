@@ -15,26 +15,26 @@
 # limitations under the License.
 
 _apt_key:
-  - keyring: "/etc/apt/trusted.gpg.d/home_alvistack.gpg"
-    url: "http://downloadcontent.opensuse.org/repositories/home:/alvistack/Debian_12/Release.key"
-    id: "789CFFDE0295B8A1F4E5690C4BECC97550D0B1FD"
-    state: "present"
+  - keyring: /etc/apt/trusted.gpg.d/home_alvistack.gpg
+    url: http://downloadcontent.opensuse.org/repositories/home:/alvistack/Debian_12/Release.key
+    id: 789CFFDE0295B8A1F4E5690C4BECC97550D0B1FD
+    state: present
 
 _apt_repository:
-  - filename: "home:alvistack"
-    repo: "deb http://downloadcontent.opensuse.org/repositories/home:/alvistack/Debian_12/ /"
-    state: "present"
+  - filename: home:alvistack
+    repo: deb http://downloadcontent.opensuse.org/repositories/home:/alvistack/Debian_12/ /
+    state: present
 
 _apt:
-  - { state: "latest", name: "packer" }
-  - { state: "latest", name: "packer-plugin-amazon" }
-  - { state: "latest", name: "packer-plugin-ansible" }
-  - { state: "latest", name: "packer-plugin-azure" }
-  - { state: "latest", name: "packer-plugin-docker" }
-  - { state: "latest", name: "packer-plugin-googlecompute" }
-  - { state: "latest", name: "packer-plugin-libvirt" }
-  - { state: "latest", name: "packer-plugin-qemu" }
-  - { state: "latest", name: "packer-plugin-vagrant" }
-  - { state: "latest", name: "packer-plugin-virtualbox" }
-  - { state: "latest", name: "packer-plugin-vmware" }
-  - { state: "latest", name: "packer-plugin-vsphere" }
+  - { state: latest, name: packer }
+  - { state: latest, name: packer-plugin-amazon }
+  - { state: latest, name: packer-plugin-ansible }
+  - { state: latest, name: packer-plugin-azure }
+  - { state: latest, name: packer-plugin-docker }
+  - { state: latest, name: packer-plugin-googlecompute }
+  - { state: latest, name: packer-plugin-libvirt }
+  - { state: latest, name: packer-plugin-qemu }
+  - { state: latest, name: packer-plugin-vagrant }
+  - { state: latest, name: packer-plugin-virtualbox }
+  - { state: latest, name: packer-plugin-vmware }
+  - { state: latest, name: packer-plugin-vsphere }
